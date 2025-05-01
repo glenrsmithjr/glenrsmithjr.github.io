@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Portfolio | Educational Technologies</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --accent: #58a6ff;
+            --accent-secondary: #1f6feb;
+            --border: #30363d;
+            --success: #3fb950;
+            --warning: #d29922;
+            --danger: #f85149;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-bottom: 3rem;
+        }
+        
+        header {
+            background-color: var(--bg-secondary);
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .code-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            z-index: 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: var(--accent);
+            overflow: hidden;
+        }
+        
+        header h1 {
+            position: relative;
+            z-index: 1;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--accent), var(--success));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+        
+        header p {
+            position: relative;
+            z-index: 1;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            background-color: var(--bg-secondary);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+            background-color: rgba(56, 139, 253, 0.1);
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        section {
+            margin-bottom: 4rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background-color: var(--bg-secondary);
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem;
+            color: var(--text-primary);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+        
+        .objective-icon {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .highlight {
+            color: var(--success);
+            font-weight: bold;
+        }
+        
+        .code-block {
+            background-color: rgba(13, 17, 23, 0.5);
+            border-radius: 6px;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            margin: 1rem 0;
+            color: var(--text-primary);
+            border-left: 3px solid var(--accent);
+            overflow-x: auto;
+        }
+        
+        .img-container {
+            margin: 2rem 0;
+            border: 1px dashed var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            background-color: rgba(13, 17, 23, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .img-container:hover {
+            border-color: var(--accent);
+        }
+        
+        .img-placeholder {
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+        }
+        
+        .img-placeholder i {
+            margin-right: 0.5rem;
+            color: var(--accent);
+        }
+        
+        .caption {
+            margin-top: 1rem;
+            font-style: italic;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .persona {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .persona-img {
+            flex: 0 0 200px;
+        }
+        
+        .persona-details {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .persona-details h4 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .persona-details ul {
+            list-style-type: none;
+            margin-bottom: 1rem;
+        }
+        
+        .persona-details ul li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .persona-details ul li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+        
+        .prototype {
+            margin-top: 3rem;
+        }
+        
+        .prototype-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .prototype-header h3 {
+            margin: 0;
+        }
+        
+        .tag {
+            background-color: rgba(56, 139, 253, 0.1);
+            color: var(--accent);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            margin-left: 1rem;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            background-color: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+        }
+        
+        footer p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .social-links {
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: var(--text-secondary);
+            margin: 0 0.5rem;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            header p {
+                font-size: 1rem;
+            }
+            
+            nav {
+                flex-wrap: wrap;
+            }
+            
+            nav a {
+                margin-bottom: 0.5rem;
+            }
+            
+            section {
+                padding: 1.5rem;
+            }
+            
+            .persona {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+        
+        /* Animation */
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        .animated-gradient {
+            background: linear-gradient(90deg, var(--accent), var(--success), var(--accent));
+            background-size: 200% 200%;
+            animation: gradientFlow 5s ease infinite;
+            height: 3px;
+            width: 100%;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="code-bg" id="code-bg">
+            // Design thinking process
+            function designThinking() {
+              const phases = [
+                'empathize',
+                'define',
+                'ideate',
+                'prototype',
+                'test'
+              ];
+              
+              let insights = [];
+              let solutions = [];
+              
+              phases.forEach(phase => {
+                const result = executePhase(phase);
+                if (result.success) {
+                  insights.push(result.insights);
+                  solutions.push(result.solutions);
+                }
+              });
+              
+              return {
+                insights,
+                solutions,
+                impact: calculateImpact(solutions)
+              };
+            }
+        </div>
+        <h1>Design Portfolio</h1>
+        <p>Educational Technology & Human-Computer Interaction</p>
+    </header>
+    
+    <nav>
+        <a href="#objective"><i class="fas fa-bullseye"></i> Objective</a>
+        <a href="#project"><i class="fas fa-project-diagram"></i> Project</a>
+        <a href="#persona"><i class="fas fa-user-circle"></i> User Persona</a>
+        <a href="#prototype1"><i class="fas fa-cubes"></i> Prototype 1</a>
+        <a href="#prototype2"><i class="fas fa-cubes"></i> Prototype 2</a>
+        <a href="#prototype3"><i class="fas fa-cubes"></i> Prototype 3</a>
+    </nav>
+    
+    <main>
+        <section id="objective">
+            <div class="objective-icon">
+                <i class="fas fa-bullseye"></i>
+            </div>
+            <h2>Objective</h2>
+            <p>This design portfolio serves as a comprehensive showcase of my research and development work in the field of <span class="highlight">educational technologies</span>. The primary focus is on applying robust <span class="highlight">Human-Computer Interaction (HCI) principles</span> and <span class="highlight">interface design</span> methodologies to create intuitive, accessible, and effective learning tools.</p>
+            <p>Through this portfolio, I demonstrate the iterative design process, from initial concept and user research to high-fidelity prototypes and usability testing. Each project highlights my commitment to creating educational experiences that not only align with pedagogical goals but also engage learners through thoughtful, user-centered design.</p>
+            <div class="code-block">
+                /* My Design Philosophy */
+                const designPhilosophy = {
+                  userCentered: "Put users' needs and experiences first",
+                  accessible: "Create inclusive designs for all learners",
+                  iterative: "Continuously improve through testing and feedback",
+                  purposeful: "Every design element serves a clear function"
+                };
+            </div>
+        </section>
+        
+        <div class="animated-gradient"></div>
+        
+        <section id="project">
+            <h2>Project Description & Goals</h2>
+            <p>The <span class="highlight">Adaptive Learning Environment (ALE)</span> project aims to revolutionize how educational content adapts to individual learning styles, abilities, and progress. Through intelligent algorithms and responsive interface design, this system seeks to create personalized learning pathways that optimize knowledge retention and skill development.</p>
+            
+            <h3>Primary Goals:</h3>
+            <div class="code-block">
+                const projectGoals = [
+                  "Create an intuitive interface that adapts to individual learning patterns",
+                  "Integrate real-time feedback mechanisms that guide learner progress",
+                  "Develop accessible design patterns that accommodate diverse needs",
+                  "Implement data visualization tools for both educators and learners",
+                  "Ensure responsive design across multiple devices and contexts"
+                ];
+            </div>
+            
+            <div class="img-container">
+                <div class="img-placeholder">
+                    <i class="fas fa-sitemap"></i> Project Architecture Diagram
+                </div>
+                <p class="caption">System architecture showing the relationship between user interface, adaptive engine, and content repository</p>
+            </div>
+            
+            <div class="img-container">
+                <div class="img-placeholder">
+                    <i class="fas fa-chart-line"></i> Key Performance Indicators
+                </div>
+                <p class="caption">Visualization of target metrics including engagement, comprehension, and completion rates</p>
+            </div>
+        </section>
+        
+        <div class="animated-gradient"></div>
+        
+        <section id="persona">
+            <h2>User Persona</h2>
+            <div class="persona">
+                <div class="persona-img">
+                    <div class="img-container">
+                        <div class="img-placeholder">
+                            <i class="fas fa-user-graduate"></i> Student Persona
+                        </div>
+                        <p class="caption">Alex, 19-year-old computer science student</p>
+                    </div>
+                </div>
+                <div class="persona-details">
+                    <h4>Alex Chen | Computer Science Major</h4>
+                    <p>"I need learning tools that adapt to my schedule and help me practice coding concepts effectively."</p>
+                    
+                    <h4>Demographics:</h4>
+                    <ul>
+                        <li>19 years old, sophomore at university</li>
+                        <li>First-generation college student</li>
+                        <li>Works part-time while studying full-time</li>
+                    </ul>
+                    
+                    <h4>Goals:</h4>
+                    <ul>
+                        <li>Master programming concepts efficiently</li>
+                        <li>Balance coursework with job responsibilities</li>
+                        <li>Build a portfolio of projects for internship applications</li>
+                    </ul>
+                    
+                    <h4>Pain Points:</h4>
+                    <ul>
+                        <li>Limited time for studying due to work commitments</li>
+                        <li>Difficulty staying motivated when concepts are challenging</li>
+                        <li>Prefers visual learning but most resources are text-heavy</li>
+                        <li>Struggles with self-assessment of progress</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="img-container">
+                <div class="img-placeholder">
+                    <i class="fas fa-route"></i> User Journey Map
+                </div>
+                <p class="caption">Visualization of Alex's typical learning experience, highlighting key pain points and opportunities</p>
+            </div>
+        </section>
+        
+        <div class="animated-gradient"></div>
+        
+        <section id="prototype1" class="prototype">
+            <div class="prototype-header">
+                <h3>Prototype 1: Dashboard Interface</h3>
+                <span class="tag">Low Fidelity</span>
+            </div>
+            <p>The initial prototype focuses on the learner dashboard, providing an overview of progress, adaptive learning pathways, and next steps. This wireframe establishes the information architecture and core functionality before advancing to visual design.</p>
+            
+            <div class="img-container">
+                <div class="img-placeholder">
+                    <i class="fas fa-columns"></i> Dashboard Wireframe
+                </div>
+                <p class="caption">Low-fidelity wireframe of the main dashboard interface</p>
+            </div>
+            
+            <h4>Key Features:</h4>
+            <ul>
+                <li>Progress visualization with adaptive recommendations</li>
+                <li>Customizable study schedule integration</li>
+                <li>Skill strength/weakness indicators</li>
+                <li>Learning path visualization</li>
+            </ul>
+            
+            <h4>Design Rationale:</h4>
+            <p>This initial prototype prioritizes information hierarchy and user flow. The design employs card-based components to compartmentalize different types of information while maintaining visual cohesion. Special attention was paid to progressive disclosure principles, ensuring that complex data is presented in digestible formats that don't overwhelm the learner.</p>
+            
+            <div class="img-container">
+                <div class="img-placeholder">
+                    <i class="fas fa-arrows-alt"></i> User Flow Diagram
+                </div>
+                <p class="caption">Decision tree showing navigation paths through the dashboard interface</p>
+            </div>
+        </section>
+        
+        <div class="animated-gradient"></div>
+        
+        <section id="prototype2" class="prototype">
+            <div class="prototype-header">
+                <h3>Prototype 2: Interactive Learning Module</h3>
+                <span class="tag">Medium Fidelity</span>
+            </div>
+            <p>The second prototype explores the interactive learning module design, where adaptive content is presented to the user based on their learning profile. This medium-fidelity mockup introduces visual design elements while testing interaction patterns.</p>
+            
+            <div class="grid">
+                <div class="img-container">
+                    <div class="img-placeholder">
+                        <i class="fas fa-laptop-code"></i> Module Interface
+                    </div>
+                    <p class="caption">Medium-fidelity mockup of the interactive coding module</p>
+                </div>
+                
+                <div class="img-container">
+                    <div class="img-placeholder">
+                        <i class="fas fa-code-branch"></i> Adaptive Path Visualization
+                    </div>
+                    <p class="caption">Visualization showing how content adapts based on learner performance</p>
+                </div>
+            </div>
+            
+            <h4>Key Features:</h4>
+            <ul>
+                <li>Split-screen interface with theory and practice areas</li>
+                <li>Real-time feedback system with adaptive hints</li>
+                <li>Visualized concept connections</li>
+                <li>Accessibility controls for diverse learning needs</li>
+            </ul>
+            
+            <h4>User Testing Insights:</h4>
+            <p>Initial testing with computer science students revealed strong engagement with the interactive elements but highlighted challenges with the feedback delivery timing. Users appreciated the concept map visualization but requested clearer indications of their current position within the larger learning pathway.</p>
+            
+            <div class="img-container">
+                <div class="img-placeholder">
+                    <i class="fas fa-tasks"></i> Usability Test Results
+                </div>
+                <p class="caption">Heatmap showing user interaction patterns and pain points</p>
+            </div>
+        </section>
+        
+        <div class="animated-gradient"></div>
+        
+        <section id="prototype3" class="prototype">
+            <div class="prototype-header">
+                <h3>Prototype 3: Final Design System</h3>
+                <span class="tag">High Fidelity</span>
+            </div>
+            <p>The final prototype integrates insights from previous iterations to create a comprehensive design system and high-fidelity mockups. This version includes complete visual styling, motion design specifications, and accessibility implementations.</p>
+            
+            <div class="grid">
+                <div class="img-container">
+                    <div class="img-placeholder">
+                        <i class="fas fa-mobile-alt"></i> Mobile View
+                    </div>
+                    <p class="caption">High-fidelity mobile interface showing responsive design principles</p>
+                </div>
+                
+                <div class="img-container">
+                    <div class="img-placeholder">
+                        <i class="fas fa-desktop"></i> Desktop View
+                    </div>
+                    <p class="caption">High-fidelity desktop interface with expanded visualization capabilities</p>
+                </div>
+            </div>
+            
+            <h4>Design System Components:</h4>
+            <div class="code-block">
+                const designSystem = {
+                  colors: {
+                    primary: "#0D1117",
+                    secondary: "#161B22",
+                    accent: "#58A6FF",
+                    success: "#3FB950",
+                    warning: "#D29922",
+                    danger: "#F85149",
+                    text: {
+                      primary: "#E6EDF3",
+                      secondary: "#8B949E"
+                    }
+                  },
+                  typography: {
+                    fontFamily: "'Segoe UI', sans-serif",
+                    scale: [12, 14, 16, 18, 20, 24, 32, 40]
+                  },
+                  spacing: [4, 8, 16, 24, 32, 48, 64, 96]
+                };
+            </div>
+            
+            <div class="img-container">
+                <div class="img-placeholder">
+                    <i class="fas fa-palette"></i> Component Library
+                </div>
+                <p class="caption">Visual catalog of UI components showing states, variations, and usage guidelines</p>
+            </div>
+            
+            <h4>Implementation Considerations:</h4>
+            <p>The final design system has been documented for developer handoff with detailed specifications for animations, state transitions, and accessibility requirements. Special attention has been paid to ensuring WCAG 2.1 AA compliance across all interface elements while maintaining the visual aesthetic.</p>
+            
+            <div class="img-container">
+                <div class="img-placeholder">
+                    <i class="fas fa-universal-access"></i> Accessibility Audit Results
+                </div>
+                <p class="caption">Compliance report showing WCAG 2.1 AA conformance across all major components</p>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>© 2025 Design Portfolio • Built with HTML, CSS & JavaScript</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-dribbble"></i></a>
+            <a href="#"><i class="fab fa-behance"></i></a>
+        </div>
+    </footer>
+    
+    <script>
+        // Generate animated code background
+        document.addEventListener('DOMContentLoaded', function() {
+            const codeBlock = document.getElementById('code-bg');
+            const codeSamples = [
+                'function renderUI(data) {',
+                '  return data.map(item => {',
+                '    return createElement(item);',
+                '  });',
+                '}',
+                '',
+                'class DesignSystem {',
+                '  constructor(theme) {',
+                '    this.theme = theme;',
+                '    this.components = {};',
+                '  }',
+                '',
+                '  registerComponent(name, config) {',
+                '    this.components[name] = config;',
+                '  }',
+                '}',
+                '',
+                'const analytics = {',
+                '  trackEvent(name, data) {',
+                '    console.log(`Event: ${name}`);',
+                '    return processData(data);',
+                '  }',
+                '};',
+                '',
+                'function optimizePerformance() {',
+                '  const metrics = calculateMetrics();',
+                '  return improveExperience(metrics);',
+                '}',
+            ];
+            
+            let html = '';
+            for (let i = 0; i < 50; i++) {
+                const randomLine = codeSamples[Math.floor(Math.random() * codeSamples.length)];
+                html += randomLine + '\n';
+            }
+            
+            codeBlock.textContent = html;
+        });
+        
+        // Smooth scrolling for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
