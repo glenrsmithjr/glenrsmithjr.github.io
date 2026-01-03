@@ -13,7 +13,7 @@
             --text-main: #e6edf3;
             --text-muted: #8b949e;
             --accent-blue: #58a6ff;
-            --accent-purple: #bc8cff; /* Matches music theme */
+            --accent-purple: #bc8cff;
             --badge-research: #d29922;
             --badge-class: #3fb950;
         }
@@ -31,36 +31,36 @@
             height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow: hidden; /* Prevent double scrollbars */
+            overflow: hidden;
         }
 
         /* --- TOP DIRECTORY NAVIGATION --- */
         .portfolio-nav {
             background-color: var(--bg-panel);
             border-bottom: 1px solid var(--border);
-            padding: 1.5rem;
-            flex-shrink: 0; /* Keeps header fixed size */
+            padding: 1rem 1.5rem; /* Reduced vertical padding slightly */
+            flex-shrink: 0;
             box-shadow: 0 4px 20px rgba(0,0,0,0.4);
             z-index: 10;
         }
 
         .nav-header {
             text-align: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .nav-header h1 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0;
         }
 
         .project-grid {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             flex-wrap: wrap;
         }
 
@@ -68,9 +68,9 @@
         .project-btn {
             background-color: var(--bg-dark);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            width: 160px;
-            height: 100px;
+            border-radius: 10px;
+            width: 150px;
+            height: 90px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -81,10 +81,11 @@
             text-decoration: none;
             color: var(--text-main);
             overflow: hidden;
+            padding-bottom: 12px; /* Space for the thinner badge */
         }
 
         .project-btn:hover {
-            transform: translateY(-4px);
+            transform: translateY(-2px);
             border-color: var(--accent-blue);
             box-shadow: 0 4px 12px rgba(88, 166, 255, 0.15);
         }
@@ -94,15 +95,14 @@
             background-color: rgba(88, 166, 255, 0.05);
         }
 
-        /* Specific active color for music to match its theme */
         .project-btn[data-type="music"].active {
             border-color: var(--accent-purple);
             background-color: rgba(188, 140, 255, 0.05);
         }
 
         .icon-area {
-            font-size: 2rem;
-            margin-bottom: 8px;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
             color: var(--text-muted);
             transition: color 0.3s;
         }
@@ -113,32 +113,29 @@
         }
 
         .project-title {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 600;
-            margin-bottom: 12px; /* Space for badge */
+            text-align: center;
+            line-height: 1.1;
         }
 
-        /* --- TYPE BADGES --- */
+        /* --- THINNER TYPE BADGES --- */
         .badge {
             position: absolute;
             bottom: 0;
             width: 100%;
             text-align: center;
-            font-size: 0.7rem;
-            font-weight: bold;
-            padding: 3px 0;
+            font-size: 0.65rem; /* Smaller font */
+            padding: 2px 0;    /* Very thin padding */
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #0d1117; /* Dark text for contrast */
+            letter-spacing: 0.5px;
+            color: #0d1117;
+            font-weight: 700;
+            line-height: 1;
         }
 
-        .badge.class-project {
-            background-color: var(--badge-class);
-        }
-
-        .badge.research-project {
-            background-color: var(--badge-research);
-        }
+        .badge.class-project { background-color: var(--badge-class); }
+        .badge.research-project { background-color: var(--badge-research); }
 
         /* --- MAIN CONTENT FRAME --- */
         .content-container {
@@ -155,7 +152,6 @@
             display: block;
         }
 
-        /* Loading State */
         .loader {
             position: absolute;
             top: 50%;
@@ -164,7 +160,6 @@
             color: var(--text-muted);
             display: none;
         }
-
     </style>
 </head>
 <body>
@@ -183,51 +178,39 @@
     </main>
 
     <script>
-        // ==========================================
-        // CONFIGURATION: Add new pages here
-        // ==========================================
         const projects = [
             {
                 id: 'uworld',
                 title: 'UWorld Redesign',
                 filename: 'uworld_design_portfolio.html',
-                type: 'Class', // Options: 'Class' or 'Research'
+                type: 'Class',
                 icon: 'fas fa-book'
             },
             {
                 id: 'music',
                 title: 'Music Theory App',
                 filename: 'learn_to_chord_design_portfolio.html',
-                type: 'Class',
+                type: 'Research',
                 icon: 'fas fa-music'
             }
-            // To add a new page, just copy a block above and paste it here:
-            // { id: 'new', title: 'New Project', filename: 'file.html', type: 'Class', icon: 'fas fa-star' }
         ];
-
-        // ==========================================
-        // LOGIC
-        // ==========================================
 
         const container = document.getElementById('project-container');
         const iframe = document.getElementById('content-frame');
         const loader = document.getElementById('loader');
 
-        // 1. Render the Navigation Buttons
         function renderNav() {
-            container.innerHTML = ''; // Clear current
+            container.innerHTML = '';
 
             projects.forEach(project => {
                 const btn = document.createElement('div');
                 btn.className = 'project-btn';
                 btn.dataset.filename = project.filename;
 
-                // Add specific data attribute for styling (music vs standard)
                 if(project.icon.includes('music')) {
                     btn.dataset.type = 'music';
                 }
 
-                // Create Badge Class based on type
                 const badgeClass = project.type === 'Class' ? 'class-project' : 'research-project';
 
                 btn.innerHTML = `
@@ -238,27 +221,19 @@
                     <div class="badge ${badgeClass}">${project.type}</div>
                 `;
 
-                // Add Click Event
                 btn.addEventListener('click', () => loadProject(project.filename, btn));
-
                 container.appendChild(btn);
             });
         }
 
-        // 2. Load Project Logic
         function loadProject(filename, activeBtn) {
-            // UI Updates
             document.querySelectorAll('.project-btn').forEach(b => b.classList.remove('active'));
             if(activeBtn) activeBtn.classList.add('active');
 
-            // Show Loader momentarily
             loader.style.display = 'block';
             iframe.style.opacity = '0';
-
-            // Set Source
             iframe.src = filename;
 
-            // When loaded, fade in
             iframe.onload = () => {
                 loader.style.display = 'none';
                 iframe.style.opacity = '1';
@@ -266,18 +241,13 @@
             };
         }
 
-        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             renderNav();
-
-            // Load the first project by default
             if (projects.length > 0) {
-                // Find the button we just created to make it active
                 const firstBtn = container.querySelector('.project-btn');
                 loadProject(projects[0].filename, firstBtn);
             }
         });
-
     </script>
 </body>
 </html>

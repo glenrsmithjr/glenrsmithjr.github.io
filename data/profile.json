@@ -4,8 +4,8 @@
   "location": "Based in Atlanta, GA",
   "profileImage": "assets/images/me_prof2.jpg",
   "socialLinks": [
-    { "platform": "linkedin", "url": "https://linkedin.com/in/glensmithjr", "icon": "fab fa-linkedin" },
-    { "platform": "email", "url": "mailto:your@glen.r.smith.jr@gmail.com", "icon": "fas fa-envelope" }
+    { "platform": "linkedin", "url": "https://www.linkedin.com/in/glenrsmith/", "icon": "fab fa-linkedin" },
+    { "platform": "email", "url": "mailto:glen.r.smith.jr@gmail.com", "icon": "fas fa-envelope" }
   ],
   "about": "Quantitative economics graduate, enjoy working with business stakeholders to help support strategy based on quantitative insights and statistical models.",
   "skills": [

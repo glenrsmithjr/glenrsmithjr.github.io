@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music Theory App Design Portfolio | Educational Technologies</title>
+    <title>Music Theory App Content</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* CSS REMAINS THE SAME AS ORIGINAL, just trimmed for brevity here */
         :root {
             --bg-primary: #0d1117;
             --bg-secondary: #161b22;
@@ -20,128 +21,22 @@
             --music-primary: #6a5acd;
             --music-secondary: #9370db;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
             background-color: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
             padding-bottom: 3rem;
         }
-        
-        header {
-            background-color: var(--bg-secondary);
-            padding: 2rem;
-            text-align: center;
-            border-bottom: 1px solid var(--border);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .code-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.05;
-            z-index: 0;
-            font-family: 'Courier New', monospace;
-            font-size: 0.8rem;
-            color: var(--accent);
-            overflow: hidden;
-        }
-        
-        header h1 {
-            position: relative;
-            z-index: 1;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(90deg, var(--music-primary), var(--music-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
-        }
-        
-        header p {
-            position: relative;
-            z-index: 1;
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .portfolio-directory {
-            background-color: rgba(22, 27, 34, 0.7);
-            padding: 2rem;
-            text-align: center;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .portfolio-directory h2 {
-            font-size: 1.4rem;
-            margin-bottom: 1.5rem;
-            color: var(--music-primary);
-        }
-        
-        .directory-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1.5rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        
-        .directory-item {
-            flex: 0 0 170px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            background-color: var(--bg-secondary);
-        }
-        
-        .directory-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            border-color: var(--music-primary);
-        }
-        
-        .directory-item.active {
-            border: 2px solid var(--music-primary);
-            box-shadow: 0 0 15px rgba(106, 90, 205, 0.5);
-        }
-        
-        .directory-thumb {
-            height: 120px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-            color: var(--text-primary);
-        }
-        
-        .directory-thumb i {
-            font-size: 2.5rem;
-            margin-bottom: 0.8rem;
-            color: var(--music-primary);
-        }
-        
-        .directory-thumb span {
-            font-size: 0.9rem;
-            text-align: center;
-        }
-        
+
+        /* Nav and Section styling */
         nav {
             background-color: var(--bg-secondary);
             padding: 1rem 2rem;
@@ -151,8 +46,9 @@
             top: 0;
             z-index: 100;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid var(--border); /* Added border for separation since header is gone */
         }
-        
+
         nav a {
             color: var(--text-secondary);
             text-decoration: none;
@@ -161,18 +57,18 @@
             border-radius: 4px;
             transition: all 0.3s ease;
         }
-        
+
         nav a:hover {
             color: var(--music-primary);
             background-color: rgba(106, 90, 205, 0.1);
         }
-        
+
         main {
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
         }
-        
+
         section {
             margin-bottom: 4rem;
             border: 1px solid var(--border);
@@ -181,12 +77,12 @@
             padding: 2rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        
+
         section:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
-        
+
         h2 {
             font-size: 1.8rem;
             margin-bottom: 1.5rem;
@@ -194,7 +90,7 @@
             position: relative;
             padding-bottom: 0.5rem;
         }
-        
+
         h2::after {
             content: '';
             position: absolute;
@@ -204,30 +100,30 @@
             height: 3px;
             background: linear-gradient(90deg, var(--music-primary), transparent);
         }
-        
+
         h3 {
             font-size: 1.5rem;
             margin: 1.5rem 0 1rem;
             color: var(--text-primary);
         }
-        
+
         p {
             margin-bottom: 1rem;
             color: var(--text-secondary);
         }
-        
+
         .objective-icon {
             font-size: 3rem;
             color: var(--music-primary);
             margin-bottom: 1rem;
             text-align: center;
         }
-        
+
         .highlight {
             color: var(--music-secondary);
             font-weight: bold;
         }
-        
+
         .code-block {
             background-color: rgba(13, 17, 23, 0.5);
             border-radius: 6px;
@@ -238,7 +134,7 @@
             border-left: 3px solid var(--music-primary);
             overflow-x: auto;
         }
-        
+
         .img-container {
             margin: 2rem 0;
             border: 1px dashed var(--border);
@@ -249,11 +145,11 @@
             transition: all 0.3s ease;
             overflow: hidden;
         }
-        
+
         .img-container:hover {
             border-color: var(--music-primary);
         }
-        
+
         .img-container img {
             width: 100%;
             height: auto;
@@ -261,120 +157,43 @@
             display: block;
             transition: transform 0.3s ease;
         }
-        
+
         .img-container:hover img {
             transform: scale(1.02);
         }
-        
-        .img-placeholder {
-            height: 250px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-        }
-        
-        .img-placeholder i {
-            margin-right: 0.5rem;
-            color: var(--music-primary);
-        }
-        
+
         .caption {
             margin-top: 1rem;
             font-style: italic;
             color: var(--text-secondary);
             font-size: 0.9rem;
         }
-        
+
         .persona {
             display: flex;
             flex-wrap: wrap;
             gap: 2rem;
             margin: 2rem 0;
         }
-        
-        .persona-img {
-            flex: 0 0 200px;
-        }
-        
-        .persona-details {
-            flex: 1;
-            min-width: 300px;
-        }
-        
-        .persona-details h4 {
-            color: var(--music-primary);
-            margin-bottom: 0.5rem;
-        }
-        
-        .persona-details ul {
-            list-style-type: none;
-            margin-bottom: 1rem;
-        }
-        
-        .persona-details ul li {
-            margin-bottom: 0.5rem;
-            position: relative;
-            padding-left: 1.5rem;
-        }
-        
-        .persona-details ul li::before {
-            content: '♪';
-            position: absolute;
-            left: 0;
-            color: var(--music-primary);
-        }
-        
-        .prototype {
-            margin-top: 3rem;
-        }
-        
-        .prototype-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-        
-        .prototype-header h3 {
-            margin: 0;
-        }
-        
-        .tag {
-            background-color: rgba(106, 90, 205, 0.1);
-            color: var(--music-primary);
-            padding: 0.3rem 0.8rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            margin-left: 1rem;
-        }
-        
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-        
-        .feedback-block {
-            background-color: rgba(13, 17, 23, 0.5);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin: 1rem 0;
-            border-left: 3px solid var(--music-secondary);
-        }
-        
-        .feedback-block h4 {
-            color: var(--music-secondary);
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-        }
-        
-        .feedback-block h4 i {
-            margin-right: 0.5rem;
-        }
-        
+
+        .persona-img { flex: 0 0 200px; }
+        .persona-details { flex: 1; min-width: 300px; }
+        .persona-details h4 { color: var(--music-primary); margin-bottom: 0.5rem; }
+        .persona-details ul { list-style-type: none; margin-bottom: 1rem; }
+        .persona-details ul li { margin-bottom: 0.5rem; position: relative; padding-left: 1.5rem; }
+        .persona-details ul li::before { content: '♪'; position: absolute; left: 0; color: var(--music-primary); }
+
+        .prototype { margin-top: 3rem; }
+        .prototype-header { display: flex; align-items: center; margin-bottom: 1rem; }
+        .prototype-header h3 { margin: 0; }
+        .tag { background-color: rgba(106, 90, 205, 0.1); color: var(--music-primary); padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.85rem; margin-left: 1rem; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 2rem 0; }
+
+        .feedback-block { background-color: rgba(13, 17, 23, 0.5); border-radius: 8px; padding: 1.5rem; margin: 1rem 0; border-left: 3px solid var(--music-secondary); }
+        .feedback-block h4 { color: var(--music-secondary); margin-bottom: 0.5rem; display: flex; align-items: center; }
+        .feedback-block h4 i { margin-right: 0.5rem; }
+
         .animated-gradient {
             background: linear-gradient(90deg, var(--music-primary), var(--success), var(--music-primary));
             background-size: 200% 200%;
@@ -383,171 +202,36 @@
             width: 100%;
             margin: 2rem 0;
         }
-        
-        footer {
-            text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
-            background-color: var(--bg-secondary);
-            border-top: 1px solid var(--border);
-        }
-        
-        footer p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-        
-        .social-links {
-            margin-top: 1rem;
-        }
-        
-        .social-links a {
-            color: var(--text-secondary);
-            margin: 0 0.5rem;
-            font-size: 1.2rem;
-            transition: color 0.3s ease;
-        }
-        
-        .social-links a:hover {
-            color: var(--music-primary);
-        }
-        
-        /* Responsive Adjustments */
+
+        footer { text-align: center; padding: 2rem; margin-top: 3rem; background-color: var(--bg-secondary); border-top: 1px solid var(--border); }
+        footer p { color: var(--text-secondary); font-size: 0.9rem; }
+        .social-links { margin-top: 1rem; }
+        .social-links a { color: var(--text-secondary); margin: 0 0.5rem; font-size: 1.2rem; transition: color 0.3s ease; }
+        .social-links a:hover { color: var(--music-primary); }
+
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
-            }
-            
-            header p {
-                font-size: 1rem;
-            }
-            
-            nav {
-                flex-wrap: wrap;
-            }
-            
-            nav a {
-                margin-bottom: 0.5rem;
-            }
-            
-            section {
-                padding: 1.5rem;
-            }
-            
-            .persona {
-                flex-direction: column;
-                gap: 1rem;
-            }
+            nav { flex-wrap: wrap; }
+            nav a { margin-bottom: 0.5rem; }
+            section { padding: 1.5rem; }
+            .persona { flex-direction: column; gap: 1rem; }
         }
-        
-        /* Animation */
+
         @keyframes gradientFlow {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
-        
-        .note-symbol {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background-color: var(--music-primary);
-            color: white;
-            font-weight: bold;
-            margin-right: 0.5rem;
-        }
-        
-        .user-quote {
-            display: block;
-            font-style: italic;
-            padding: 1rem;
-            background-color: rgba(106, 90, 205, 0.1);
-            border-radius: 6px;
-            margin: 1rem 0;
-            position: relative;
-        }
-        
-        .user-quote::before {
-            content: '❝';
-            font-size: 2rem;
-            color: var(--music-primary);
-            opacity: 0.5;
-            position: absolute;
-            top: 0.5rem;
-            left: 0.5rem;
-        }
-        
-        .insights-list {
-            list-style-type: none;
-            margin: 1rem 0;
-        }
-        
-        .insights-list li {
-            margin-bottom: 1rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-        
-        .insights-list li::before {
-            content: '♫';
-            position: absolute;
-            left: 0;
-            color: var(--music-primary);
-        }
+
+        .user-quote { display: block; font-style: italic; padding: 1rem; background-color: rgba(106, 90, 205, 0.1); border-radius: 6px; margin: 1rem 0; position: relative; }
+        .user-quote::before { content: '❝'; font-size: 2rem; color: var(--music-primary); opacity: 0.5; position: absolute; top: 0.5rem; left: 0.5rem; }
+
+        .insights-list { list-style-type: none; margin: 1rem 0; }
+        .insights-list li { margin-bottom: 1rem; padding-left: 1.5rem; position: relative; }
+        .insights-list li::before { content: '♫'; position: absolute; left: 0; color: var(--music-primary); }
     </style>
 </head>
 <body>
-    <header>
-        <div class="code-bg" id="code-bg">
-            // Music Theory App
-            function buildChord(root, type) {
-              const intervals = {
-                major: [0, 4, 7],
-                minor: [0, 3, 7],
-                diminished: [0, 3, 6],
-                augmented: [0, 4, 8],
-                dominant7th: [0, 4, 7, 10]
-              };
-              
-              const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
-              const rootIndex = notes.indexOf(root);
-              
-              return intervals[type].map(interval => {
-                return notes[(rootIndex + interval) % 12];
-              });
-            }
-        </div>
-        <h1>Learn to Chord Design Portfolio</h1>
-        <p></p>
-    </header>
-    
-    <div class="portfolio-directory">
-        <h2>Design Portfolio Directory</h2>
-        <div class="directory-grid">
-            <a href="uworld_design_portfolio.html" class="directory-item active">
-                <div class="directory-thumb">
-                    <i class="fas fa-calendar-day"></i>
-                    <span>UWorld Feature Redesign</span>
-                </div>
-            </a>
-            <a href="learn_to_chord_design_portfolio.html" class="directory-item">
-                <div class="directory-thumb">
-                    <i class="fas fa-chart-line"></i>
-                    <span>Music Theory Learning App</span>
-                </div>
-            </a>
-        </div>
-    </div>
-    
+
     <nav>
         <a href="#objective"><i class="fas fa-bullseye"></i> Objective</a>
         <a href="#project"><i class="fas fa-project-diagram"></i> Project</a>
@@ -557,7 +241,7 @@
         <a href="#user-testing"><i class="fas fa-clipboard-check"></i> User Testing</a>
         <a href="#prototype2"><i class="fas fa-cubes"></i> Final Design</a>
     </nav>
-    
+
     <main>
         <section id="objective">
             <div class="objective-icon">
@@ -577,13 +261,13 @@
                 };
             </div>
         </section>
-        
+
         <div class="animated-gradient"></div>
-        
+
         <section id="project">
             <h2>Project Description & Learning Outcomes</h2>
             <p><span class="highlight">Learn to Chord</span> is designed to help music students strengthen their theoretical understanding through focused learning modules on chord building and resolutions. The mobile platform was chosen deliberately to address the needs of today's music students, who often practice in various locations and benefit from having reference materials readily available.</p>
-            
+
             <h3>Learning Outcomes:</h3>
             <div class="code-block">
                 const learningOutcomes = [ <br>
@@ -593,10 +277,10 @@
                   "Translate theoretical knowledge into practical composition skills" <br>
                 ];
             </div>
-            
+
             <h3>Project Scope:</h3>
             <p>This iOS application will enable quick practice sessions during otherwise unproductive time periods to facilitate just-in-time learning when working on compositions. The project was prototyped through wireframes created in Figma, followed by a higher fidelity Figma prototype implementing core features including chord visualization and playback functionality.</p>
-            
+
             <h3>Learning Science Foundation:</h3>
             <p>The design incorporates several evidence-based learning science principles:</p>
             <ul class="insights-list">
@@ -607,14 +291,14 @@
             </ul>
 
         </section>
-        
+
         <div class="animated-gradient"></div>
 
         <section id="user-interviews">
             <h2>Initial User Interviews</h2>
              <p>To ensure the application meets real user needs, I conducted interviews with three individuals from my target demographic. Their feedback shaped the design direction and feature priorities.</p>
             <h3>Key Findings:</h3>
-            
+
             <div class="feedback-block">
                 <h4><i class="fas fa-user-graduate"></i> Conservatory Graduate Feedback</h4>
                 <p>"The app has a solid foundation but needs more depth for long-term value. I'd quickly outgrow the basic chord functions and want something that challenges me further."</p>
@@ -624,7 +308,7 @@
                     <li>Suggested adding more advanced chord types (9ths, 11ths, 13ths)</li>
                 </ul>
             </div>
-            
+
             <div class="feedback-block">
                 <h4><i class="fas fa-headphones"></i> Music Producer Feedback</h4>
                 <p>"I like the concept, but it feels too classically oriented. I need to see how these concepts apply to jazz harmony and modern chord progressions used in contemporary music."</p>
@@ -634,7 +318,7 @@
                     <li>Suggested adding non-classical notation styles (chord charts, Nashville numbering)</li>
                 </ul>
             </div>
-            
+
             <div class="feedback-block">
                 <h4><i class="fas fa-guitar"></i> Hobby Musician Feedback</h4>
                 <p>"I need to hear what I'm seeing. Without audio playback, it's just abstract shapes to me. Also, why isn't there an explanation for why certain chords work together?"</p>
@@ -646,10 +330,10 @@
             </div>
 
         </section>
-        
+
         <section id="persona">
             <h2>User Personas</h2>
-            
+
             <div class="persona">
                 <div class="persona-img">
                     <div class="img-container">
@@ -660,21 +344,21 @@
                 <div class="persona-details">
                     <h4>Advanced Music Student | Conservatory Graduate</h4>
                     <p class="user-quote">An app like this needs to grow with the student to maintain relevance as their skills advance.</p>
-                    
+
                     <h4>Background:</h4>
                     <ul>
                         <li>Formal conservatory training in music theory and performance</li>
                         <li>Works professionally in the music industry</li>
                         <li>Strong foundation in classical music theory</li>
                     </ul>
-                    
+
                     <h4>Needs:</h4>
                     <ul>
                         <li>Advanced theory concepts that go beyond basics</li>
                         <li>Progressive difficulty levels for continued growth</li>
                         <li>Reference tool for complex composition challenges</li>
                     </ul>
-                    
+
                     <h4>Feedback Highlights:</h4>
                     <ul>
                         <li>Suggested implementing AI-based music analysis</li>
@@ -683,7 +367,7 @@
                     </ul>
                 </div>
             </div>
-            
+
             <div class="persona">
                 <div class="persona-img">
                     <div class="img-container">
@@ -695,21 +379,21 @@
                 <div class="persona-details">
                     <h4>Experimental Musician | Cello Hobbyist</h4>
                     <p class="user-quote">I want to understand why certain chords don't work together, not just which ones do.</p>
-                    
+
                     <h4>Background:</h4>
                     <ul>
                         <li>Self-taught on cello with non-traditional approaches</li>
                         <li>Explores experimental music styles</li>
                         <li>Limited formal theory education</li>
                     </ul>
-                    
+
                     <h4>Needs:</h4>
                     <ul>
                         <li>Basic theory foundations explained clearly</li>
                         <li>Tools to hear concepts as well as see them</li>
                         <li>Understanding of theory "rules" and when to break them</li>
                     </ul>
-                    
+
                     <h4>Feedback Highlights:</h4>
                     <ul>
                         <li>Requested audio playback functionality</li>
@@ -719,34 +403,34 @@
                 </div>
             </div>
         </section>
-        
+
         <div class="animated-gradient"></div>
-        
+
         <section id="prototype1" class="prototype">
             <div class="prototype-header">
                 <h3>Initial Prototype: Chord Explorer</h3>
                 <span class="tag">Low Fidelity</span>
             </div>
             <p>The initial prototype focused on creating a core chord exploration interface that would allow users to visualize and hear different chord types across various keys. This wireframe established the foundational user flow and core functionality before advancing to visual design and interaction details.</p>
-            
+
             <div class="img-container">
                 <img src="assets/images/design_portfolio/music_theory_app_storyboard.jpg" alt="" class="portfolio-image">
 
                 <p class="caption">Hand-drawn concept sketches showing the primary interface elements and navigation</p>
             </div>
-            
+
             <div class="grid">
                 <div class="img-container">
                     <img src="assets/images/design_portfolio/chord_builder_screen.png" alt="" class="portfolio-image">
                     <p class="caption">Low-fidelity prototype of the chord construction interface</p>
                 </div>
-                
+
                 <div class="img-container">
                     <img src="assets/images/design_portfolio/chord_resolution_screen.png" alt="" class="portfolio-image">
                     <p class="caption">Low-fidelity prototype of the chord resolution interface</p>
                 </div>
             </div>
-            
+
             <h4>Key Features:</h4>
             <ul>
                 <li>Interactive visualization of chord structures</li>
@@ -754,7 +438,7 @@
                 <li>Key selector to transpose chord constructions</li>
                 <li>Simple, minimalist interface focused on core functionality</li>
             </ul>
-            
+
             <h4>Design Inspiration:</h4>
             <p>The initial design drew inspiration from several existing music education applications while addressing their limitations:</p>
             <ul class="insights-list">
@@ -764,13 +448,13 @@
                 <li>Music Theory Advanced for iPhone - Clean layout but limited interactivity</li>
             </ul>
         </section>
-        
+
         <div class="animated-gradient"></div>
-        
+
         <section id="user-testing">
             <h2>User Testing & Feedback</h2>
             <p>?I was unfortunately not able to engage in user testing for this project due to participants/leads being unavailable.</p>
-            
+
             <h3>Design Approach Without Testing:</h3>
             <p>In the absence of direct user testing, I followed a design approach based on:</p>
             <ol>
@@ -779,9 +463,9 @@
                 <li>Applying established learning science principles</li>
                 <li>Incorporating multimedia learning best practices</li>
             </ol>
-            
+
             <h3>Key Insights from Initial Interviews:</h3>
-            
+
             <div class="feedback-block">
                 <h4><i class="fas fa-user-graduate"></i> Conservatory Graduate Input</h4>
                 <p>"The application's longevity depends on whether it can grow with the user. Advanced students might quickly outgrow basic functionality."</p>
@@ -789,7 +473,7 @@
                     <li>Value of expandable content for skill development: The design was made to be modular such that new learning exercises can be added easily.</li>
                 </ul>
             </div>
-            
+
             <div class="feedback-block">
                 <h4><i class="fas fa-guitar"></i> Hobby Musician Input</h4>
                 <p>"Audio playback and comprehensive explanation of dissonance resolution would help understand why certain combinations work or don't work."</p>
@@ -798,36 +482,36 @@
                     <li>Value of explaining theory principles, not just presenting them: The explainations for chord resolutions are now very detailed.</li>
                 </ul>
             </div>
-            
+
             <h3>Inspiration from Established Systems:</h3>
             <p>The design incorporates successful elements from leading music theory applications:</p>
-            
+
             <div class="grid">
                 <div class="img-container">
                     <img src="assets/images/design_portfolio/music_theory_net.png" alt="" class="portfolio-image">
                     <p class="caption">MusicTheory.net Chord Building Inspiration. Simple, easy to use interface.</p>
                 </div>
-                
+
                 <div class="img-container">
                     <img src="assets/images/design_portfolio/hookpad.png" alt="" class="portfolio-image">
                     <p class="caption">Hookpad Chord Resolution Inspiration. Easy blocking and colors to follow.</p>
                 </div>
             </div>
         </section>
- 
+
  <section id="prototype2" class="prototype">
             <div class="prototype-header">
                 <h3>Final Design</h3>
                 <span class="tag">High Fidelity</span>
             </div>
             <p>The final design incorporates some feedback from user testing to create a more comprehensive, engaging, and accessible music theory learning tool.</p>
-            
+
             <div class="grid">
                 <div class="img-container">
                     <img src="assets/images/design_portfolio/login_screen.png" alt="" class="portfolio-image">
                     <p class="caption">Login Screen</p>
                 </div>
-                
+
                 <div class="img-container">
                     <img src="assets/images/design_portfolio/home_screen.png" alt="" class="portfolio-image">
                     <p class="caption">Home Screen</p>
@@ -838,7 +522,7 @@
                     <p class="caption">Settings Screen</p>
                 </div>
             </div>
-            
+
             <h4>Learning Views</h4>
              <p>The final design lets you learn how to build various kinds of chords, learn about chord resolutions, and then practice this knowledge with a quiz.</p>
             <div class="grid">
@@ -846,7 +530,7 @@
                     <img src="assets/images/design_portfolio/chord_builder_screen.png" alt="" class="portfolio-image">
                     <p class="caption">Chord Builder</p>
                 </div>
-                
+
                 <div class="img-container">
                     <img src="assets/images/design_portfolio/chord_resolution_screen.png" alt="" class="portfolio-image">
                     <p class="caption">Learn about chord resolutions</p>
@@ -865,7 +549,7 @@
                     <img src="assets/images/design_portfolio/progress_screen1.png" alt="" class="portfolio-image">
                     <p class="caption">Overview</p>
                 </div>
-                
+
                 <div class="img-container">
                     <img src="assets/images/design_portfolio/progress_screen2.png" alt="" class="portfolio-image">
                     <p class="caption">Chord Building</p>
@@ -876,7 +560,7 @@
                     <p class="caption">Chord Resolutions</p>
                 </div>
             </div>
-            
+
             <h4>Applied Learning Science Principles:</h4>
             <p>The final design reinforces the application of key learning science principles:</p>
             <ul class="insights-list">
@@ -886,6 +570,35 @@
                 <li><strong>Spaced Repetition:</strong> Practice exercises that reinforce concepts over time</li>
             </ul>
         </section>
-        
+
         <div class="animated-gradient"></div>
 
+    </main>
+
+    <footer>
+        <p>© 2025 Music Theory App Project • Portfolio by Glen Smith</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-dribbble"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
