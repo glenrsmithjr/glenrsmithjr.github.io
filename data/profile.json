@@ -17,12 +17,12 @@
       "description": "Detailed history of my work experience, education, and academic achievements.",
       "link": "assets/documents/my-cv.pdf",
       "icon": "fas fa-file-alt",
-      "buttonText": "View Resume"
+      "buttonText": "View CV"
     },
     {
       "title": "Design Portfolio",
       "description": "A collection of software architecture diagrams and UI/UX design case studies.",
-      "link": "https://www.glensmith.pro/design_portfolio.html",
+      "link": "assets/portfolios/design_portfolio.html",
       "icon": "fas fa-pen-ruler",
       "buttonText": "View Portfolio"
     }
