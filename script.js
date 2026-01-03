@@ -15,7 +15,7 @@ async function fetchData(url) {
     }
 }
 
-// --- LOAD PROFILE DATA ---
+// --- LOAD PROFILE & RESOURCES ---
 async function loadProfile() {
     const profileData = await fetchData('data/profile.json');
     const loadingElement = document.getElementById('profile-loading');
@@ -26,32 +26,30 @@ async function loadProfile() {
         return;
     }
 
-    // Populate Basic Info
+    // 1. Populate Basic Info
     document.getElementById('profile-image').src = profileData.profileImage;
     document.getElementById('profile-name').textContent = profileData.name;
     document.getElementById('profile-title').textContent = profileData.title;
     document.getElementById('profile-location').textContent = profileData.location;
     document.getElementById('profile-about').textContent = profileData.about;
 
-    // Populate Social Links
+    // 2. Populate Social Links
     const socialContainer = document.getElementById('social-links');
+    socialContainer.innerHTML = ''; // Clear existing to prevent duplicates
     profileData.socialLinks.forEach(link => {
-        // If you are using FontAwesome, we create the 'i' element
         const anchor = document.createElement('a');
         anchor.href = link.url;
         anchor.target = "_blank";
         anchor.setAttribute('aria-label', link.platform);
-
         const icon = document.createElement('i');
-        // Assumes icon string is like "fab fa-linkedin"
         icon.className = link.icon;
-
         anchor.appendChild(icon);
         socialContainer.appendChild(anchor);
     });
 
-    // Populate Skills
+    // 3. Populate Skills
     const skillsContainer = document.getElementById('skills-list');
+    skillsContainer.innerHTML = ''; // Clear existing
     profileData.skills.forEach(skill => {
         const skillTag = document.createElement('span');
         skillTag.className = 'tag';
@@ -59,12 +57,34 @@ async function loadProfile() {
         skillsContainer.appendChild(skillTag);
     });
 
-    // Set CV PDF Link
-    if(profileData.cvPdfPath) {
-         document.getElementById('cv-link-button').href = profileData.cvPdfPath;
+    // 4. Populate Resources (Resume & Portfolio Cards)
+    const resourcesGrid = document.getElementById('resources-grid');
+    if (resourcesGrid && profileData.resources) {
+        resourcesGrid.innerHTML = ''; // Clear existing
+
+        profileData.resources.forEach(resource => {
+            const card = document.createElement('div');
+            card.className = 'resource-card';
+
+            card.innerHTML = `
+                <div>
+                    <div class="resource-header">
+                        <div class="resource-icon-box">
+                            <i class="${resource.icon}"></i>
+                        </div>
+                        <h3>${resource.title}</h3>
+                    </div>
+                    <p>${resource.description}</p>
+                </div>
+                <a href="${resource.link}" target="_blank" class="resource-link">
+                    ${resource.buttonText || 'View'} <i class="fas fa-arrow-right"></i>
+                </a>
+            `;
+            resourcesGrid.appendChild(card);
+        });
     }
 
-    // Hide loader and show content
+    // Hide loader and show sidebar content
     loadingElement.style.display = 'none';
     contentElement.style.display = 'block';
 }

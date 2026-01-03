@@ -1,16 +1,30 @@
 {
-  "name": "Alexander Marks",
-  "title": "Data Analyst at Amazon",
-  "location": "Based in London, UK",
-  "profileImage": "assets/images/profile.jpg",
+  "name": "Glen Smith",
+  "title": "Data Scientist | PhD Candidate",
+  "location": "Based in Atlanta, GA",
+  "profileImage": "assets/images/me_prof2.jpg",
   "socialLinks": [
-    { "platform": "linkedin", "url": "https://linkedin.com/in/yourprofile", "icon": "fab fa-linkedin" },
-    { "platform": "github", "url": "https://github.com/yourusername", "icon": "fab fa-github" },
-    { "platform": "email", "url": "mailto:your@email.com", "icon": "fas fa-envelope" }
+    { "platform": "linkedin", "url": "https://linkedin.com/in/glensmithjr", "icon": "fab fa-linkedin" },
+    { "platform": "email", "url": "mailto:your@glen.r.smith.jr@gmail.com", "icon": "fas fa-envelope" }
   ],
   "about": "Quantitative economics graduate, enjoy working with business stakeholders to help support strategy based on quantitative insights and statistical models.",
   "skills": [
-    "SQL", "Python", "R", "Tableau", "Excel", "Statistical modelling", "Sampling techniques"
+    "Python", "SQL", "R", "Tableau", "Excel", "Statistical modelling", "Sampling techniques"
   ],
-  "cvPdfPath": "my-cv.pdf"
+  "resources": [
+    {
+      "title": "Curriculum Vitae",
+      "description": "Detailed history of my work experience, education, and academic achievements.",
+      "link": "assets/documents/my-cv.pdf",
+      "icon": "fas fa-file-alt",
+      "buttonText": "View Resume"
+    },
+    {
+      "title": "Design Portfolio",
+      "description": "A collection of software architecture diagrams and UI/UX design case studies.",
+      "link": "https://www.glensmith.pro/design_portfolio.html",
+      "icon": "fas fa-pen-ruler",
+      "buttonText": "View Portfolio"
+    }
+  ]
 }
