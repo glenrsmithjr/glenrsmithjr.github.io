@@ -134,7 +134,7 @@ p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1rem; }
 
 
 /* CV Section Styles */
-.cv-section-container {
+.main-page-subsequent-container {
     margin-top: 40px;
     padding-top: 30px;
     border-top: 1px solid var(--border-color);
