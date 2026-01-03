@@ -1,0 +1,167 @@
+:root {
+    /* Color Palette based on image */
+    --bg-color: #ffffff;
+    --text-primary: #1a1a1a;
+    --text-secondary: #666666;
+    --accent-color: #007bff; /* A standard blue for links */
+    --tag-bg: #eef2ff; /* Light purple/blue for tags */
+    --tag-text: #4f46e5;
+    --border-color: #eaeaea;
+    --card-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #f9fafb; /* Very light gray background for page */
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+/* Layout Structure */
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 60px;
+}
+
+/* Responsive breakpoint for desktop view */
+@media (min-width: 900px) {
+    .main-container {
+        grid-template-columns: 300px 1fr; /* Fixed sidebar, flexible content */
+        align-items: start; /* Keep sidebar at top */
+    }
+}
+
+/* General Typography */
+h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+h2 { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-primary); }
+h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); margin-bottom: 1rem; font-weight: 600; }
+p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1rem; }
+.meta-text { font-size: 0.9rem; color: var(--text-secondary); }
+.section-title { font-size: 1.5rem; margin-bottom: 25px; border-bottom: none; }
+.loading { color: var(--text-secondary); font-style: italic; }
+
+/* ---- SIDEBAR STYLES ---- */
+.profile-header { margin-bottom: 40px; }
+
+#profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 3px solid white;
+    box-shadow: var(--card-shadow);
+}
+
+.social-icons {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    color: var(--text-secondary);
+    font-size: 1.4rem;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.social-icons a:hover { color: var(--text-primary); }
+
+.sidebar-section { margin-bottom: 40px; }
+
+/* Skill Tags */
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag {
+    background-color: var(--tag-bg);
+    color: var(--tag-text);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* ---- MAIN CONTENT AREA STYLES ---- */
+
+/* Project Grid */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.project-card {
+    background: var(--bg-color);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.project-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--card-shadow);
+}
+
+.project-thumb {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.project-content { padding: 24px; }
+.project-content h3 { margin-bottom: 15px; color: var(--text-primary); text-transform: none; font-size: 1.1rem;}
+.project-tags { margin-bottom: 15px; }
+.read-more { color: var(--accent-color); text-decoration: none; font-weight: 500; font-size: 0.95rem;}
+.read-more:hover { text-decoration: underline; }
+.read-more i { font-size: 0.8rem; margin-left: 4px;}
+
+
+/* CV Section Styles */
+.cv-section-container {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid var(--border-color);
+}
+
+.cv-block {
+    background: var(--bg-color);
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--text-primary);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+.btn-primary:hover { background-color: #333; }

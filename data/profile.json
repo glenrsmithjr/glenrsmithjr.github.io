@@ -1,0 +1,16 @@
+{
+  "name": "Alexander Marks",
+  "title": "Data Analyst at Amazon",
+  "location": "Based in London, UK",
+  "profileImage": "assets/images/profile.jpg",
+  "socialLinks": [
+    { "platform": "linkedin", "url": "https://linkedin.com/in/yourprofile", "icon": "fab fa-linkedin" },
+    { "platform": "github", "url": "https://github.com/yourusername", "icon": "fab fa-github" },
+    { "platform": "email", "url": "mailto:your@email.com", "icon": "fas fa-envelope" }
+  ],
+  "about": "Quantitative economics graduate, enjoy working with business stakeholders to help support strategy based on quantitative insights and statistical models.",
+  "skills": [
+    "SQL", "Python", "R", "Tableau", "Excel", "Statistical modelling", "Sampling techniques"
+  ],
+  "cvPdfPath": "my-cv.pdf"
+}
