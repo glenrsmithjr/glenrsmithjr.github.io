@@ -101,17 +101,16 @@ async function loadProjects() {
         return;
     }
 
-    // Clear loading message
     if(loadingElement) loadingElement.style.display = 'none';
 
     projectsData.forEach(project => {
         const projectCard = document.createElement('article');
         projectCard.className = 'project-card';
 
-        // 1. Generate Tags HTML
+        // Tags HTML
         const tagsHTML = project.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
 
-        // 2. Generate Papers HTML (New Logic)
+        // Papers HTML
         let papersHTML = '';
         if (project.papers && project.papers.length > 0) {
             const paperLinks = project.papers.map(paper => `
@@ -119,11 +118,9 @@ async function loadProjects() {
                     <i class="fas fa-file-alt"></i> ${paper.title}
                 </a>
             `).join('');
-
             papersHTML = `<div class="project-papers">${paperLinks}</div>`;
         }
 
-        // 3. Build Card HTML (Removed "Read More" link)
         projectCard.innerHTML = `
             <img src="${project.image}" alt="${project.title}" class="project-thumb">
             <div class="project-content">
@@ -137,5 +134,41 @@ async function loadProjects() {
         `;
 
         projectsGrid.appendChild(projectCard);
+
+        // --- NEW: Add Click Event for Lightbox ---
+        const imgElement = projectCard.querySelector('.project-thumb');
+        imgElement.addEventListener('click', () => {
+            openLightbox(project.image, project.title);
+        });
     });
+
+    setupLightboxCloser();
+}
+
+// --- LIGHTBOX LOGIC ---
+function openLightbox(imageSrc, captionText) {
+    const modal = document.getElementById("lightbox-modal");
+    const modalImg = document.getElementById("lightbox-img");
+    const caption = document.getElementById("caption");
+
+    modal.style.display = "block";
+    modalImg.src = imageSrc;
+    caption.innerHTML = captionText;
+}
+
+function setupLightboxCloser() {
+    const modal = document.getElementById("lightbox-modal");
+    const span = document.getElementsByClassName("close-lightbox")[0];
+
+    // Close on 'X' click
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // Close on background click
+    modal.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    }
 }

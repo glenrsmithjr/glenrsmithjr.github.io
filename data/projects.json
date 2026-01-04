@@ -1,21 +1,18 @@
 [
-  {
-    "title": "AirBnB listings price prediction",
-    "image": "assets/images/project-1.jpg",
-    "tags": ["Python", "SQL", "Matlab"],
-    "description": "Prediction of AirBnB prices growth Milan (Italy) to provide insights on the areas that might soon get more opportunities to monetise with short stays.",
-    "papers": [
-        { "url": "path/to/research-paper.pdf", "title": "Research Paper" },
-        { "url": "path/to/appendix.pdf", "title": "Appendix" }
-    ]
+    {
+    "title": "TEACH: Teacher-Driven AI Tutor Authoring",
+    "image": "assets/images/projects/teach-poster.png",
+    "tags": ["Python", "Flask", "HTML", "Javascript", "CSS"],
+    "description": "TEACH is a platform that lets educators build intelligent tutors without programming or AI expertise. It uses generative AI to help design tutor interfaces and the LEARN architecture to create expert models through demonstration and feedback. The system also serves as a research instrument to study tutor authoring, human–AI collaboration, and effective scaffolding.",
+    "papers": []
   },
   {
-    "title": "Spotify visual data art",
-    "image": "assets/images/project-2.jpg",
-    "tags": ["Python", "Javascript", "SQL"],
-    "description": "Inspired by Windows Music Player animations, this algorithm creates cool animations for every music track on earth.",
+    "title": "Authoring Expert Models Using Generative AI & Cognitive Models",
+    "image": "assets/images/project-1.jpg",
+    "tags": ["Python", "Large Language Model"],
+    "description": "Introduces LEARN (Learning by Example Agent & Reasoning Network), a hybrid system combining hierarchical task networks (HTNs) with language models (LMs) to learn procedural task hierarchies. The LM compliments the role of a human teacher by generating examples and new HTN elements while HTN interpreters provide structure and reliability. Tested in tutoring contexts, it learns faster with fewer examples than HTN-only systems.",
     "papers": [
-        { "url": "https://arxiv.org/example", "title": "Technical Report" }
+        { "url": "https://openreview.net/forum?id=aKJl1p8hWb", "title": "Research Paper" }
     ]
   }
 ]
