@@ -97,20 +97,33 @@ async function loadProjects() {
     const projectsGrid = document.getElementById('projects-grid');
 
     if (!projectsData) {
-        loadingElement.textContent = 'Failed to load projects.';
+        if(loadingElement) loadingElement.textContent = 'Failed to load projects.';
         return;
     }
 
     // Clear loading message
-    loadingElement.style.display = 'none';
+    if(loadingElement) loadingElement.style.display = 'none';
 
     projectsData.forEach(project => {
         const projectCard = document.createElement('article');
         projectCard.className = 'project-card';
 
-        // Generate tags HTML string
+        // 1. Generate Tags HTML
         const tagsHTML = project.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
 
+        // 2. Generate Papers HTML (New Logic)
+        let papersHTML = '';
+        if (project.papers && project.papers.length > 0) {
+            const paperLinks = project.papers.map(paper => `
+                <a href="${paper.url}" target="_blank" class="paper-link" title="${paper.title}">
+                    <i class="fas fa-file-alt"></i> ${paper.title}
+                </a>
+            `).join('');
+
+            papersHTML = `<div class="project-papers">${paperLinks}</div>`;
+        }
+
+        // 3. Build Card HTML (Removed "Read More" link)
         projectCard.innerHTML = `
             <img src="${project.image}" alt="${project.title}" class="project-thumb">
             <div class="project-content">
@@ -119,9 +132,7 @@ async function loadProjects() {
                     ${tagsHTML}
                 </div>
                 <p>${project.description}</p>
-                <a href="${project.link}" target="_blank" class="read-more">
-                    Read more <i class="fas fa-arrow-right"></i>
-                </a>
+                ${papersHTML}
             </div>
         `;
 

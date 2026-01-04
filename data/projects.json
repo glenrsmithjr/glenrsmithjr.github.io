@@ -3,14 +3,19 @@
     "title": "AirBnB listings price prediction",
     "image": "assets/images/project-1.jpg",
     "tags": ["Python", "SQL", "Matlab"],
-    "description": "Prediction of AirBnB prices growth Milan (Italy) to provide insights on the areas that might soon get more opportunities to monetise with short stays. The algorithm takes into account seasonality, home characteristics, economic factors and stats on existing properties.",
-    "link": "https://github.com/yourusername/project1"
+    "description": "Prediction of AirBnB prices growth Milan (Italy) to provide insights on the areas that might soon get more opportunities to monetise with short stays.",
+    "papers": [
+        { "url": "path/to/research-paper.pdf", "title": "Research Paper" },
+        { "url": "path/to/appendix.pdf", "title": "Appendix" }
+    ]
   },
   {
     "title": "Spotify visual data art",
     "image": "assets/images/project-2.jpg",
     "tags": ["Python", "Javascript", "SQL"],
-    "description": "Inspired by Windows Music Player animations, this algorithm creates cool animations for every music track on earth. The animations are tailored to the melody as well as the text, with the aim to create engaging experiences for users.",
-    "link": "https://github.com/yourusername/project2"
+    "description": "Inspired by Windows Music Player animations, this algorithm creates cool animations for every music track on earth.",
+    "papers": [
+        { "url": "https://arxiv.org/example", "title": "Technical Report" }
+    ]
   }
 ]

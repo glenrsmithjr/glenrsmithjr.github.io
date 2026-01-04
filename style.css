@@ -227,3 +227,37 @@ p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1rem; }
 .resource-link:hover {
     color: var(--accent-color);
 }
+
+/* ---- PROJECT PAPERS STYLES ---- */
+.project-papers {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.paper-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #f3f4f6; /* Light gray background */
+    color: var(--text-secondary);
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.paper-link:hover {
+    background-color: white;
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.paper-link i {
+    font-size: 0.9rem;
+}

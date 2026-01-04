@@ -2,12 +2,12 @@
   "name": "Glen Smith",
   "title": "Data Scientist | PhD Candidate",
   "location": "Based in Atlanta, GA",
-  "profileImage": "assets/images/me_prof2.jpg",
+  "profileImage": "assets/images/me_professional_suit.jpg",
   "socialLinks": [
     { "platform": "linkedin", "url": "https://www.linkedin.com/in/glenrsmith/", "icon": "fab fa-linkedin" },
     { "platform": "email", "url": "mailto:glen.r.smith.jr@gmail.com", "icon": "fas fa-envelope" }
   ],
-  "about": "Quantitative economics graduate, enjoy working with business stakeholders to help support strategy based on quantitative insights and statistical models.",
+  "about": "A driven data scientist and technologist who loves building impactful AI solutions, collaborating with great teams, and turning ambitious ideas into meaningful results.",
   "skills": [
     "Python", "SQL", "R", "Tableau", "Excel", "Statistical modelling", "Sampling techniques"
   ],
