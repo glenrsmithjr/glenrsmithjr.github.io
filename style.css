@@ -51,7 +51,13 @@ p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1rem; }
 .loading { color: var(--text-secondary); font-style: italic; }
 
 /* ---- SIDEBAR STYLES ---- */
-.profile-header { margin-bottom: 40px; }
+.profile-header {
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
 
 #profile-image {
     width: 180px;
