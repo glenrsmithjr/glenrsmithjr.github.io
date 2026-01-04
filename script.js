@@ -145,15 +145,36 @@ async function loadProjects() {
     setupLightboxCloser();
 }
 
+// --- LIGHTBOX VARIABLES ---
+let currentScale = 1;
+let isDragging = false;
+let startX = 0, startY = 0;
+let translateX = 0, translateY = 0;
+
+const modalImg = document.getElementById("lightbox-img");
+
 // --- LIGHTBOX LOGIC ---
 function openLightbox(imageSrc, captionText) {
     const modal = document.getElementById("lightbox-modal");
-    const modalImg = document.getElementById("lightbox-img");
     const caption = document.getElementById("caption");
 
     modal.style.display = "block";
     modalImg.src = imageSrc;
     caption.innerHTML = captionText;
+
+    // Reset Zoom/Pan when opening a new image
+    resetZoom();
+}
+
+function resetZoom() {
+    currentScale = 1;
+    translateX = 0;
+    translateY = 0;
+    updateImageTransform();
+}
+
+function updateImageTransform() {
+    modalImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentScale})`;
 }
 
 function setupLightboxCloser() {
@@ -171,4 +192,55 @@ function setupLightboxCloser() {
             modal.style.display = "none";
         }
     }
+
+    // --- ADD ZOOM & DRAG EVENT LISTENERS ---
+
+    // 1. Zoom with Mouse Wheel
+    modalImg.addEventListener('wheel', function(e) {
+        e.preventDefault(); // Prevent page scrolling
+
+        // Determine zoom direction
+        const delta = e.deltaY * -0.001;
+        const newScale = currentScale + delta;
+
+        // Restrict scale between 1x and 5x
+        currentScale = Math.min(Math.max(1, newScale), 5);
+
+        // If zoomed out completely, reset position
+        if (currentScale === 1) {
+            translateX = 0;
+            translateY = 0;
+        }
+
+        updateImageTransform();
+    });
+
+    // 2. Start Dragging (MouseDown)
+    modalImg.addEventListener('mousedown', function(e) {
+        if (currentScale > 1) { // Only drag if zoomed in
+            isDragging = true;
+            startX = e.clientX - translateX;
+            startY = e.clientY - translateY;
+            modalImg.style.cursor = 'grabbing';
+            e.preventDefault();
+        }
+    });
+
+    // 3. Dragging (MouseMove)
+    window.addEventListener('mousemove', function(e) {
+        if (isDragging) {
+            e.preventDefault();
+            translateX = e.clientX - startX;
+            translateY = e.clientY - startY;
+            updateImageTransform();
+        }
+    });
+
+    // 4. Stop Dragging (MouseUp)
+    window.addEventListener('mouseup', function() {
+        if (isDragging) {
+            isDragging = false;
+            modalImg.style.cursor = 'grab';
+        }
+    });
 }

@@ -276,6 +276,7 @@ p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1rem; }
     background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
 }
 
+/* Replace your existing .lightbox-content rule with this: */
 .lightbox-content {
     margin: auto;
     display: block;
@@ -285,16 +286,17 @@ p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1rem; }
     object-fit: contain;
     border-radius: 4px;
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-    animation-name: zoom;
-    animation-duration: 0.3s;
-    cursor: zoom-in; /* Indicates it can be zoomed further if needed */
+
+    /* Updated for Zoom Support */
+    cursor: grab;
+    transition: transform 0.1s ease-out; /* Smooths the zoom slightly */
+    transform-origin: center center;
 }
 
-/* Zoom Animation */
-@keyframes zoom {
-    from {transform:scale(0)}
-    to {transform:scale(1)}
+.lightbox-content:active {
+    cursor: grabbing;
 }
+
 
 /* Close Button */
 .close-lightbox {
