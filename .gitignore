@@ -1,0 +1,45 @@
+# PyCharm
+.idea/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+.venv/
+.env/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Logs
+*.log
+
+# Build / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Byte-compiled / optimized / DLL files
+*.so
+*.dll
+*.dylib
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Coverage / test
+htmlcov/
+.coverage
+coverage.xml
+.pytest_cache/
+
+# Misc
+*.sqlite3

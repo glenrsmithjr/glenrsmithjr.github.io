@@ -21,7 +21,7 @@
     },
     {
       "title": "Design Portfolio",
-      "description": "A collection of software architecture diagrams and UI/UX design case studies.",
+      "description": "A collection of software and UI/UX design case studies and projects.",
       "link": "assets/portfolios/design_portfolio.html",
       "icon": "fas fa-pen-ruler",
       "buttonText": "View Portfolio"
