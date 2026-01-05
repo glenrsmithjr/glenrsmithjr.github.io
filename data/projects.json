@@ -10,7 +10,7 @@
     "title": "Language-Guided Induction of Hierarchical Task Networks",
     "image": "assets/images/projects/learn_algorithm.png",
     "tags": ["Generative AI", "Planning Systems", "Human-Computer Interaction"],
-    "description": "Introduces LEARN (Learning by Example Agent & Reasoning Network), a hybrid system combining cognitive models and generative to learn procedural task hierarchies. A language model provides training data for a hierarchical task network (HTN) learning algorithm and an HTN interpreter is used to perform planning over the hierarchy to solve tasks.",
+    "description": "Introduces LEARN (Learning by Example Agent & Reasoning Network), a hybrid system combining cognitive models and generative AI to learn procedural task hierarchies. A language model provides training data for a hierarchical task network (HTN) learning algorithm and an HTN interpreter is used to perform planning over the hierarchy to solve tasks.",
     "papers": [
         { "url": "https://openreview.net/forum?id=aKJl1p8hWb", "title": "Research Paper" }
     ]
