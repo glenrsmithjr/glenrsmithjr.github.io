@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Theory App Content</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS REMAINS THE SAME AS ORIGINAL, just trimmed for brevity here */
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --accent: #58a6ff;
+            --accent-secondary: #1f6feb;
+            --border: #30363d;
+            --success: #3fb950;
+            --warning: #d29922;
+            --danger: #f85149;
+            --music-primary: #6a5acd;
+            --music-secondary: #9370db;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-bottom: 3rem;
+        }
+
+        /* Nav and Section styling */
+        nav {
+            background-color: var(--bg-secondary);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid var(--border); /* Added border for separation since header is gone */
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--music-primary);
+            background-color: rgba(106, 90, 205, 0.1);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            margin-bottom: 4rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background-color: var(--bg-secondary);
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--music-primary);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--music-primary), transparent);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem;
+            color: var(--text-primary);
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .objective-icon {
+            font-size: 3rem;
+            color: var(--music-primary);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .highlight {
+            color: var(--music-secondary);
+            font-weight: bold;
+        }
+
+        .code-block {
+            background-color: rgba(13, 17, 23, 0.5);
+            border-radius: 6px;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            margin: 1rem 0;
+            color: var(--text-primary);
+            border-left: 3px solid var(--music-primary);
+            overflow-x: auto;
+        }
+
+        .img-container {
+            margin: 2rem 0;
+            border: 1px dashed var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            background-color: rgba(13, 17, 23, 0.5);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .img-container:hover {
+            border-color: var(--music-primary);
+        }
+
+        .img-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .img-container:hover img {
+            transform: scale(1.02);
+        }
+
+        .caption {
+            margin-top: 1rem;
+            font-style: italic;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .persona {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .persona-img { flex: 0 0 200px; }
+        .persona-details { flex: 1; min-width: 300px; }
+        .persona-details h4 { color: var(--music-primary); margin-bottom: 0.5rem; }
+        .persona-details ul { list-style-type: none; margin-bottom: 1rem; }
+        .persona-details ul li { margin-bottom: 0.5rem; position: relative; padding-left: 1.5rem; }
+        .persona-details ul li::before { content: '♪'; position: absolute; left: 0; color: var(--music-primary); }
+
+        .prototype { margin-top: 3rem; }
+        .prototype-header { display: flex; align-items: center; margin-bottom: 1rem; }
+        .prototype-header h3 { margin: 0; }
+        .tag { background-color: rgba(106, 90, 205, 0.1); color: var(--music-primary); padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.85rem; margin-left: 1rem; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 2rem 0; }
+
+        .feedback-block { background-color: rgba(13, 17, 23, 0.5); border-radius: 8px; padding: 1.5rem; margin: 1rem 0; border-left: 3px solid var(--music-secondary); }
+        .feedback-block h4 { color: var(--music-secondary); margin-bottom: 0.5rem; display: flex; align-items: center; }
+        .feedback-block h4 i { margin-right: 0.5rem; }
+
+        .animated-gradient {
+            background: linear-gradient(90deg, var(--music-primary), var(--success), var(--music-primary));
+            background-size: 200% 200%;
+            animation: gradientFlow 5s ease infinite;
+            height: 3px;
+            width: 100%;
+            margin: 2rem 0;
+        }
+
+        footer { text-align: center; padding: 2rem; margin-top: 3rem; background-color: var(--bg-secondary); border-top: 1px solid var(--border); }
+        footer p { color: var(--text-secondary); font-size: 0.9rem; }
+        .social-links { margin-top: 1rem; }
+        .social-links a { color: var(--text-secondary); margin: 0 0.5rem; font-size: 1.2rem; transition: color 0.3s ease; }
+        .social-links a:hover { color: var(--music-primary); }
+
+        @media (max-width: 768px) {
+            nav { flex-wrap: wrap; }
+            nav a { margin-bottom: 0.5rem; }
+            section { padding: 1.5rem; }
+            .persona { flex-direction: column; gap: 1rem; }
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .user-quote { display: block; font-style: italic; padding: 1rem; background-color: rgba(106, 90, 205, 0.1); border-radius: 6px; margin: 1rem 0; position: relative; }
+        .user-quote::before { content: '❝'; font-size: 2rem; color: var(--music-primary); opacity: 0.5; position: absolute; top: 0.5rem; left: 0.5rem; }
+
+        .insights-list { list-style-type: none; margin: 1rem 0; }
+        .insights-list li { margin-bottom: 1rem; padding-left: 1.5rem; position: relative; }
+        .insights-list li::before { content: '♫'; position: absolute; left: 0; color: var(--music-primary); }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#objective"><i class="fas fa-bullseye"></i> Objective</a>
+        <a href="#project"><i class="fas fa-project-diagram"></i> Project</a>
+        <a href="#user-interviews"><i class="fas fa-user-circle"></i> User Interviews</a>
+        <a href="#persona"><i class="fas fa-cubes"></i> User Personas</a>
+        <a href="#prototype1"><i class="fas fa-cubes"></i> Initial Design</a>
+        <a href="#user-testing"><i class="fas fa-clipboard-check"></i> User Testing</a>
+        <a href="#prototype2"><i class="fas fa-cubes"></i> Final Design</a>
+    </nav>
+
+    <main>
+        <section id="objective">
+            <div class="objective-icon">
+                <i class="fas fa-music"></i>
+            </div>
+            <h2>Objective</h2>
+            <p>This portfolio showcases the design and development of a <span class="highlight">Music Theory Educational App</span> for iOS devices. Drawing on my formal training at the Baltimore School for the Arts and Peabody Conservatory programs, this project aims to transform music theory learning into an accessible, engaging mobile experience that helps students develop a deeper understanding of harmonic principles.</p>
+            <p>Through this portfolio, I demonstrate the iterative design process, from initial conceptualization based on learning science principles to user testing and refinement. The project highlights how educational technology can bridge the gap between theoretical knowledge and practical application in music composition and performance.</p>
+            <div class="code-block">
+                /* Design Philosophy */
+                const designPhilosophy = { <br>
+                  accessibility: "Make music theory concepts accessible anytime, anywhere", <br>
+                  engagement: "Transform abstract theory into interactive visual and auditory experiences", <br>
+                  practicality: "Focus on practical application rather than abstract knowledge", <br>
+                  progression: "Support learners across various experience levels and learning goals", <br>
+                  scientificBasis: "Apply cognitive and learning science principles to optimize knowledge retention" <br>
+                };
+            </div>
+        </section>
+
+        <div class="animated-gradient"></div>
+
+        <section id="project">
+            <h2>Project Description & Learning Outcomes</h2>
+            <p><span class="highlight">Learn to Chord</span> is designed to help music students strengthen their theoretical understanding through focused learning modules on chord building and resolutions. The mobile platform was chosen deliberately to address the needs of today's music students, who often practice in various locations and benefit from having reference materials readily available.</p>
+
+            <h3>Learning Outcomes:</h3>
+            <div class="code-block">
+                const learningOutcomes = [ <br>
+                  "Demonstrate understanding of chord construction principles", <br>
+                  "Identify and build various chord types (major, minor, diminished, augmented, seventh) in any key", <br>
+                  "Apply counterpoint theory to create harmonically satisfying chord resolutions", <br>
+                  "Translate theoretical knowledge into practical composition skills" <br>
+                ];
+            </div>
+
+            <h3>Project Scope:</h3>
+            <p>This iOS application will enable quick practice sessions during otherwise unproductive time periods to facilitate just-in-time learning when working on compositions. The project was prototyped through wireframes created in Figma, followed by a higher fidelity Figma prototype implementing core features including chord visualization and playback functionality.</p>
+
+            <h3>Learning Science Foundation:</h3>
+            <p>The design incorporates several evidence-based learning science principles:</p>
+            <ul class="insights-list">
+                <li><strong>Cognitive Load Theory:</strong> Breaking complex music theory concepts into manageable, bite-sized examples that isolate specific chord constructions and resolutions</li>
+                <li><strong>Mayer's Multimedia Learning Principles (segmentation):</strong> Presenting complex material in digestible parts to enhance comprehension</li>
+                <li><strong>Modality Principle:</strong> Pairing visual chord representations with audio playback to engage multiple learning channels</li>
+                <li><strong>Immediate Feedback:</strong> Providing visual and textual cues during practice exercises to reinforce learning</li>
+            </ul>
+
+        </section>
+
+        <div class="animated-gradient"></div>
+
+        <section id="user-interviews">
+            <h2>Initial User Interviews</h2>
+             <p>To ensure the application meets real user needs, I conducted interviews with three individuals from my target demographic. Their feedback shaped the design direction and feature priorities.</p>
+            <h3>Key Findings:</h3>
+
+            <div class="feedback-block">
+                <h4><i class="fas fa-user-graduate"></i> Conservatory Graduate Feedback</h4>
+                <p>"The app has a solid foundation but needs more depth for long-term value. I'd quickly outgrow the basic chord functions and want something that challenges me further."</p>
+                <ul class="insights-list">
+                    <li>Found the interface intuitive but too basic for advanced users</li>
+                    <li>Wanted to see theory concepts in the context of actual musical scores</li>
+                    <li>Suggested adding more advanced chord types (9ths, 11ths, 13ths)</li>
+                </ul>
+            </div>
+
+            <div class="feedback-block">
+                <h4><i class="fas fa-headphones"></i> Music Producer Feedback</h4>
+                <p>"I like the concept, but it feels too classically oriented. I need to see how these concepts apply to jazz harmony and modern chord progressions used in contemporary music."</p>
+                <ul class="insights-list">
+                    <li>Struggled to find genre-specific applications</li>
+                    <li>Wanted more examples from popular music</li>
+                    <li>Suggested adding non-classical notation styles (chord charts, Nashville numbering)</li>
+                </ul>
+            </div>
+
+            <div class="feedback-block">
+                <h4><i class="fas fa-guitar"></i> Hobby Musician Feedback</h4>
+                <p>"I need to hear what I'm seeing. Without audio playback, it's just abstract shapes to me. Also, why isn't there an explanation for why certain chords work together?"</p>
+                <ul class="insights-list">
+                    <li>Repeatedly tried to tap chords expecting to hear them</li>
+                    <li>Wanted more fundamental explanations of theory concepts</li>
+                    <li>Suggested adding a "theory behind this" section to each chord explanation</li>
+                </ul>
+            </div>
+
+        </section>
+
+        <section id="persona">
+            <h2>User Personas</h2>
+
+            <div class="persona">
+                <div class="persona-img">
+                    <div class="img-container">
+                        <img src="../images/design_portfolio/user%20persona%20conservatory%20graduate.png" alt="" class="portfolio-image">
+                        <p class="caption">Peabody Conservatory music graduate, 29, male</p>
+                    </div>
+                </div>
+                <div class="persona-details">
+                    <h4>Advanced Music Student | Conservatory Graduate</h4>
+                    <p class="user-quote">An app like this needs to grow with the student to maintain relevance as their skills advance.</p>
+
+                    <h4>Background:</h4>
+                    <ul>
+                        <li>Formal conservatory training in music theory and performance</li>
+                        <li>Works professionally in the music industry</li>
+                        <li>Strong foundation in classical music theory</li>
+                    </ul>
+
+                    <h4>Needs:</h4>
+                    <ul>
+                        <li>Advanced theory concepts that go beyond basics</li>
+                        <li>Progressive difficulty levels for continued growth</li>
+                        <li>Reference tool for complex composition challenges</li>
+                    </ul>
+
+                    <h4>Feedback Highlights:</h4>
+                    <ul>
+                        <li>Suggested implementing AI-based music analysis</li>
+                        <li>Concerned about longevity for advanced users</li>
+                        <li>Recommended expandable content for skill progression</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="persona">
+                <div class="persona-img">
+                    <div class="img-container">
+                        <img src="../images/design_portfolio/user%20persona%20hobby%20musician.jpg" alt="" class="portfolio-image">
+
+                        <p class="caption">"Alternative" cello hobbyist, 30, male</p>
+                    </div>
+                </div>
+                <div class="persona-details">
+                    <h4>Experimental Musician | Cello Hobbyist</h4>
+                    <p class="user-quote">I want to understand why certain chords don't work together, not just which ones do.</p>
+
+                    <h4>Background:</h4>
+                    <ul>
+                        <li>Self-taught on cello with non-traditional approaches</li>
+                        <li>Explores experimental music styles</li>
+                        <li>Limited formal theory education</li>
+                    </ul>
+
+                    <h4>Needs:</h4>
+                    <ul>
+                        <li>Basic theory foundations explained clearly</li>
+                        <li>Tools to hear concepts as well as see them</li>
+                        <li>Understanding of theory "rules" and when to break them</li>
+                    </ul>
+
+                    <h4>Feedback Highlights:</h4>
+                    <ul>
+                        <li>Requested audio playback functionality</li>
+                        <li>Wanted comprehensive explanation of dissonance resolution</li>
+                        <li>Suggested explaining why chord combinations work or don't work</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="animated-gradient"></div>
+
+        <section id="prototype1" class="prototype">
+            <div class="prototype-header">
+                <h3>Initial Prototype: Chord Explorer</h3>
+                <span class="tag">Low Fidelity</span>
+            </div>
+            <p>The initial prototype focused on creating a core chord exploration interface that would allow users to visualize and hear different chord types across various keys. This wireframe established the foundational user flow and core functionality before advancing to visual design and interaction details.</p>
+
+            <div class="img-container">
+                <img src="../images/design_portfolio/music_theory_app_storyboard.jpg" alt="" class="portfolio-image">
+
+                <p class="caption">Hand-drawn concept sketches showing the primary interface elements and navigation</p>
+            </div>
+
+            <div class="grid">
+                <div class="img-container">
+                    <img src="../images/design_portfolio/chord_builder_screen.png" alt="" class="portfolio-image">
+                    <p class="caption">Low-fidelity prototype of the chord construction interface</p>
+                </div>
+
+                <div class="img-container">
+                    <img src="../images/design_portfolio/chord_resolution_screen.png" alt="" class="portfolio-image">
+                    <p class="caption">Low-fidelity prototype of the chord resolution interface</p>
+                </div>
+            </div>
+
+            <h4>Key Features:</h4>
+            <ul>
+                <li>Interactive visualization of chord structures</li>
+                <li>Chord type selector (major, minor, diminished, augmented)</li>
+                <li>Key selector to transpose chord constructions</li>
+                <li>Simple, minimalist interface focused on core functionality</li>
+            </ul>
+
+            <h4>Design Inspiration:</h4>
+            <p>The initial design drew inspiration from several existing music education applications while addressing their limitations:</p>
+            <ul class="insights-list">
+                <li>Tenuto (by musictheory.net) - Intuitive note visualization but overly minimalistic interface</li>
+                <li>Hookpad (by Hooktheory) - Strong chord progression visualization but complex interface</li>
+                <li>Teoria - Simple interface but outdated design aesthetics</li>
+                <li>Music Theory Advanced for iPhone - Clean layout but limited interactivity</li>
+            </ul>
+        </section>
+
+        <div class="animated-gradient"></div>
+
+        <section id="user-testing">
+            <h2>User Testing & Feedback</h2>
+            <p>?I was unfortunately not able to engage in user testing for this project due to participants/leads being unavailable.</p>
+
+            <h3>Design Approach Without Testing:</h3>
+            <p>In the absence of direct user testing, I followed a design approach based on:</p>
+            <ol>
+                <li>Synthesizing feedback from initial user interviews</li>
+                <li>Analyzing successful elements from existing applications</li>
+                <li>Applying established learning science principles</li>
+                <li>Incorporating multimedia learning best practices</li>
+            </ol>
+
+            <h3>Key Insights from Initial Interviews:</h3>
+
+            <div class="feedback-block">
+                <h4><i class="fas fa-user-graduate"></i> Conservatory Graduate Input</h4>
+                <p>"The application's longevity depends on whether it can grow with the user. Advanced students might quickly outgrow basic functionality."</p>
+                <ul class="insights-list">
+                    <li>Value of expandable content for skill development: The design was made to be modular such that new learning exercises can be added easily.</li>
+                </ul>
+            </div>
+
+            <div class="feedback-block">
+                <h4><i class="fas fa-guitar"></i> Hobby Musician Input</h4>
+                <p>"Audio playback and comprehensive explanation of dissonance resolution would help understand why certain combinations work or don't work."</p>
+                <ul class="insights-list">
+                    <li>Implemented (mockup) of plackback functionality.</li>
+                    <li>Value of explaining theory principles, not just presenting them: The explainations for chord resolutions are now very detailed.</li>
+                </ul>
+            </div>
+
+            <h3>Inspiration from Established Systems:</h3>
+            <p>The design incorporates successful elements from leading music theory applications:</p>
+
+            <div class="grid">
+                <div class="img-container">
+                    <img src="../images/design_portfolio/music_theory_net.png" alt="" class="portfolio-image">
+                    <p class="caption">MusicTheory.net Chord Building Inspiration. Simple, easy to use interface.</p>
+                </div>
+
+                <div class="img-container">
+                    <img src="../images/design_portfolio/hookpad.png" alt="" class="portfolio-image">
+                    <p class="caption">Hookpad Chord Resolution Inspiration. Easy blocking and colors to follow.</p>
+                </div>
+            </div>
+        </section>
+
+ <section id="prototype2" class="prototype">
+            <div class="prototype-header">
+                <h3>Final Design</h3>
+                <span class="tag">High Fidelity</span>
+            </div>
+            <p>The final design incorporates some feedback from user testing to create a more comprehensive, engaging, and accessible music theory learning tool.</p>
+
+            <div class="grid">
+                <div class="img-container">
+                    <img src="../images/design_portfolio/login_screen.png" alt="" class="portfolio-image">
+                    <p class="caption">Login Screen</p>
+                </div>
+
+                <div class="img-container">
+                    <img src="../images/design_portfolio/home_screen.png" alt="" class="portfolio-image">
+                    <p class="caption">Home Screen</p>
+                </div>
+
+                <div class="img-container">
+                    <img src="../images/design_portfolio/settings_screen.png" alt="" class="portfolio-image">
+                    <p class="caption">Settings Screen</p>
+                </div>
+            </div>
+
+            <h4>Learning Views</h4>
+             <p>The final design lets you learn how to build various kinds of chords, learn about chord resolutions, and then practice this knowledge with a quiz.</p>
+            <div class="grid">
+                <div class="img-container">
+                    <img src="../images/design_portfolio/chord_builder_screen.png" alt="" class="portfolio-image">
+                    <p class="caption">Chord Builder</p>
+                </div>
+
+                <div class="img-container">
+                    <img src="../images/design_portfolio/chord_resolution_screen.png" alt="" class="portfolio-image">
+                    <p class="caption">Learn about chord resolutions</p>
+                </div>
+
+                <div class="img-container">
+                    <img src="../images/design_portfolio/quiz_screen.png" alt="" class="portfolio-image">
+                    <p class="caption">Quiz Screen</p>
+                </div>
+            </div>
+
+             <h4>Progress Views</h4>
+             <p>The final design lets you track your progress.</p>
+            <div class="grid">
+                <div class="img-container">
+                    <img src="../images/design_portfolio/progress_screen1.png" alt="" class="portfolio-image">
+                    <p class="caption">Overview</p>
+                </div>
+
+                <div class="img-container">
+                    <img src="../images/design_portfolio/progress_screen2.png" alt="" class="portfolio-image">
+                    <p class="caption">Chord Building</p>
+                </div>
+
+                <div class="img-container">
+                    <img src="../images/design_portfolio/progress_screen3.png" alt="" class="portfolio-image">
+                    <p class="caption">Chord Resolutions</p>
+                </div>
+            </div>
+
+            <h4>Applied Learning Science Principles:</h4>
+            <p>The final design reinforces the application of key learning science principles:</p>
+            <ul class="insights-list">
+                <li><strong>Multimodal Learning:</strong> Combined visual, auditory, and kinesthetic engagement</li>
+                <li><strong>Just-in-Time Learning:</strong> Contextual information available when needed, but not overwhelming</li>
+                <li><strong>Constructivist Approach:</strong> Tools to experiment and build understanding through exploration</li>
+                <li><strong>Spaced Repetition:</strong> Practice exercises that reinforce concepts over time</li>
+            </ul>
+        </section>
+
+        <div class="animated-gradient"></div>
+
+    </main>
+
+    <footer>
+        <p>© 2025 Music Theory App Project • Portfolio by Glen Smith</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-dribbble"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

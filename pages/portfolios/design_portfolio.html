@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glen Smith | Design Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="data:,">
+    <style>
+        :root {
+            --bg-dark: #0d1117;
+            --bg-panel: #161b22;
+            --border: #30363d;
+            --text-main: #e6edf3;
+            --text-muted: #8b949e;
+            --accent-blue: #58a6ff;
+            --accent-purple: #bc8cff;
+            --badge-research: #d29922;
+            --badge-class: #3fb950;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* --- TOP DIRECTORY NAVIGATION --- */
+        .portfolio-nav {
+            background-color: var(--bg-panel);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 1.5rem; /* Reduced vertical padding slightly */
+            flex-shrink: 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            z-index: 10;
+        }
+
+        .nav-header {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .nav-header h1 {
+            font-size: 1.4rem;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0;
+        }
+
+        .project-grid {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        /* --- PROJECT CARD BUTTONS --- */
+        .project-btn {
+            background-color: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            width: 150px;
+            height: 90px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            text-decoration: none;
+            color: var(--text-main);
+            overflow: hidden;
+            padding-bottom: 12px; /* Space for the thinner badge */
+        }
+
+        .project-btn:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 4px 12px rgba(88, 166, 255, 0.15);
+        }
+
+        .project-btn.active {
+            border: 2px solid var(--accent-blue);
+            background-color: rgba(88, 166, 255, 0.05);
+        }
+
+        .project-btn[data-type="music"].active {
+            border-color: var(--accent-purple);
+            background-color: rgba(188, 140, 255, 0.05);
+        }
+
+        .icon-area {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            color: var(--text-muted);
+            transition: color 0.3s;
+        }
+
+        .project-btn:hover .icon-area,
+        .project-btn.active .icon-area {
+            color: var(--text-main);
+        }
+
+        .project-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: center;
+            line-height: 1.1;
+        }
+
+        /* --- THINNER TYPE BADGES --- */
+        .badge {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 0.65rem; /* Smaller font */
+            padding: 2px 0;    /* Very thin padding */
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #0d1117;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .badge.class-project { background-color: var(--badge-class); }
+        .badge.research-project { background-color: var(--badge-research); }
+
+        /* --- MAIN CONTENT FRAME --- */
+        .content-container {
+            flex-grow: 1;
+            position: relative;
+            width: 100%;
+            background-color: var(--bg-dark);
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        .loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--text-muted);
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="portfolio-nav">
+        <div class="nav-header">
+            <h1>Design Portfolio Directory</h1>
+        </div>
+        <div class="project-grid" id="project-container">
+            </div>
+    </nav>
+
+    <main class="content-container">
+        <div id="loader" class="loader">Loading Project...</div>
+        <iframe id="content-frame" name="content-frame" src=""></iframe>
+    </main>
+
+    <script>
+        const projects = [
+            {
+                id: 'uworld',
+                title: 'UWorld Redesign',
+                filename: 'uworld_design_portfolio.html',
+                type: 'Class',
+                icon: 'fas fa-book'
+            },
+            {
+                id: 'music',
+                title: 'Music Theory App',
+                filename: 'learn_to_chord_design_portfolio.html',
+                type: 'Class',
+                icon: 'fas fa-music'
+            }
+        ];
+
+        const container = document.getElementById('project-container');
+        const iframe = document.getElementById('content-frame');
+        const loader = document.getElementById('loader');
+
+        function renderNav() {
+            container.innerHTML = '';
+
+            projects.forEach(project => {
+                const btn = document.createElement('div');
+                btn.className = 'project-btn';
+                btn.dataset.filename = project.filename;
+
+                if(project.icon.includes('music')) {
+                    btn.dataset.type = 'music';
+                }
+
+                const badgeClass = project.type === 'Class' ? 'class-project' : 'research-project';
+
+                btn.innerHTML = `
+                    <div class="icon-area">
+                        <i class="${project.icon}"></i>
+                    </div>
+                    <span class="project-title">${project.title}</span>
+                    <div class="badge ${badgeClass}">${project.type}</div>
+                `;
+
+                btn.addEventListener('click', () => loadProject(project.filename, btn));
+                container.appendChild(btn);
+            });
+        }
+
+        function loadProject(filename, activeBtn) {
+            document.querySelectorAll('.project-btn').forEach(b => b.classList.remove('active'));
+            if(activeBtn) activeBtn.classList.add('active');
+
+            loader.style.display = 'block';
+            iframe.style.opacity = '0';
+            iframe.src = filename;
+
+            iframe.onload = () => {
+                loader.style.display = 'none';
+                iframe.style.opacity = '1';
+                iframe.style.transition = 'opacity 0.3s ease';
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderNav();
+            if (projects.length > 0) {
+                const firstBtn = container.querySelector('.project-btn');
+                loadProject(projects[0].filename, firstBtn);
+            }
+        });
+    </script>
+</body>
+</html>

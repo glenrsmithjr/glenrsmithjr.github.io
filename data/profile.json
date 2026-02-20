@@ -4,12 +4,26 @@
   "location": "Based in Atlanta, GA",
   "profileImage": "assets/images/me_professional_suit.jpg",
   "socialLinks": [
-    { "platform": "linkedin", "url": "https://www.linkedin.com/in/glenrsmith/", "icon": "fab fa-linkedin" },
-    { "platform": "email", "url": "mailto:glen.r.smith.jr@gmail.com", "icon": "fas fa-envelope" }
+    {
+      "platform": "linkedin",
+      "url": "https://www.linkedin.com/in/glenrsmith/",
+      "icon": "fab fa-linkedin"
+    },
+    {
+      "platform": "email",
+      "url": "mailto:glen.r.smith.jr@gmail.com",
+      "icon": "fas fa-envelope"
+    }
   ],
   "about": "A driven data scientist and technologist who loves building impactful AI solutions, collaborating with great teams, and turning ambitious ideas into meaningful results.",
   "skills": [
-    "Python", "SQL", "R", "Tableau", "Excel", "Statistical modelling", "Sampling techniques"
+    "Python",
+    "SQL",
+    "R",
+    "Tableau",
+    "Excel",
+    "Statistical modelling",
+    "Sampling techniques"
   ],
   "resources": [
     {
@@ -22,7 +36,7 @@
     {
       "title": "Design Portfolio",
       "description": "A collection of software and UI/UX design case studies and projects.",
-      "link": "assets/portfolios/design_portfolio.html",
+      "link": "pages/portfolios/design_portfolio.html",
       "icon": "fas fa-pen-ruler",
       "buttonText": "View Portfolio"
     }
