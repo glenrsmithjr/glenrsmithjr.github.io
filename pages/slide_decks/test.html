@@ -1,0 +1,28 @@
+<div style="width:100%; height:70vh; border:1px solid #ddd; border-radius:12px; overflow:hidden;">
+    <iframe id="ppt-frame" style="width:100%; height:100%; border:0;" allowfullscreen></iframe>
+</div>
+
+<script>
+    (() => {
+        // Works both for:
+        //  - https://username.github.io/ (root site)
+        //  - https://username.github.io/repo/ (project site)
+        const isGithubPages = location.hostname.endsWith("github.io");
+        const firstPathSegment = location.pathname.split("/").filter(Boolean)[0] || "";
+        const base = isGithubPages ? (firstPathSegment ? `/${firstPathSegment}` : "") : "";
+
+        console.log(base);
+        console.log(location.origin);
+        console.log(location.pathname);
+
+        // Your PPTX path in the repo:
+        const pptxPath = "/assets/slide_decks/aaai-make-presentation-do-it-like-the-doctor.pptx";
+
+        const pptxPublicUrl = location.origin + pptxPath;
+
+        console.log(pptxPublicUrl);
+
+        document.getElementById("ppt-frame").src =
+            "https://view.officeapps.live.com/op/embed.aspx?src=" + encodeURIComponent(pptxPublicUrl);
+    })();
+</script>

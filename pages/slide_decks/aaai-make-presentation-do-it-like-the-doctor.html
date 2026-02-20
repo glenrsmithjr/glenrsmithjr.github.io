@@ -1,0 +1,10 @@
+<div id="pptx-viewer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+
+<!-- PPTXjs has multiple required assets (jszip v2.x, filereader, plugin css/js, etc.) -->
+<script>
+  $("#pptx-viewer").pptxToHtml({
+    pptxFileUrl: "/assets/slide_decks/aaai-make-presentation-do-it-like-the-doctor.pptx"
+  });
+</script>
